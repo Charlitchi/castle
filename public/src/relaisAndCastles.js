@@ -1,7 +1,7 @@
 const rp = require('request-promise');
 const cheerio = require('cheerio');
 
-exports.CollectChefNames = async function CollectChefNames() {
+exports.CollectRestaurants = async function CollectRestaurants() {
   const URL = "https://www.relaischateaux.com/fr/site-map/etablissements";
   const option = {
     uri: URL,
@@ -67,11 +67,9 @@ exports.CollectChefNames = async function CollectChefNames() {
 
 
 
-  for (var i = 0; i< listURLandChef.length; i++){
-    console.log(listURLandChef[i]);
-  }
 
 
+  //console.log("Taille de la premiere liste : " + listURLandChef.length)
 
   return listURLandChef;
 }

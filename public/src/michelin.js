@@ -2,13 +2,12 @@ const rp = require('request-promise');
 const cheerio = require('cheerio');
 //const $ = require('cheerio');
 
-collectNames();
+//collectNames();
 
-/*export.collectNames() = */
-async function collectNames() {
+exports.collectNames = async function collectNames() {
   // Create the list with the URL of the pages of michelin guide where are the URLs
   var listURLPage = CreateListURL();
-var chefs = []
+  var chefs = [];
   try {
     for (var indexURL = 0; indexURL < listURLPage.length; indexURL++) {
       // récuperer les noms des chefs
@@ -18,8 +17,7 @@ var chefs = []
   } catch (error) {
     console.log(error);
   }
-  console.log(chefs)
-  console.log(chefs.length)
+
   return chefs;
 }
 
@@ -39,7 +37,7 @@ async function CollectUrlAndNames(url) {
 
   const option = {
     uri: url,
-    transform: function (body) {
+    transform: function(body) {
       return cheerio.load(body);
     }
   };
@@ -50,7 +48,7 @@ async function CollectUrlAndNames(url) {
 
   // code
   try {
-      let $ = await rp(option);
+    let $ = await rp(option);
     // récupérer tous les URLs des restaurants : dans le HTML ils ont tous 'class="poi-card-link"'
 
     var blockOfRestaurant = $('.poi-card-link').each(function() {
@@ -62,11 +60,10 @@ async function CollectUrlAndNames(url) {
       var nameChef = await CollectChefName("https://restaurant.michelin.fr/" + listURLRestaurants[indexURL]);
       listChefs.push(nameChef);
       //PrintS(nameChef);
-      }
+    }
   } catch (error) {
     console.log(error);
   }
-  PrintS(listChefs.length)
   return listChefs;
 }
 
@@ -103,8 +100,9 @@ function Pause() {
     ;
   }
 }
+
 function Fusion(liste1, liste2) {
-  for (var index = 0; index < liste2.length; index++){
+  for (var index = 0; index < liste2.length; index++) {
     liste1.push(liste2[index]);
   }
   return liste1;
