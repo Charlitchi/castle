@@ -25,7 +25,7 @@ console.log(listCompared)
 
 
  var result = fs.readFileSync("listCompared.json");
-result= result.toString();
+result = result.toString();
 var listCompared = JSON.parse(result);
 
 // console.log(listCompared)
@@ -36,7 +36,7 @@ listComparedWithPrices = await hotelPrices.collectPrices(listCompared);
 console.log(listComparedWithPrices)
 
 
-var str = JSON.stringify(listCompared);
+var str = JSON.stringify(listComparedWithPrices);
 fs.writeFile("listComparedWithPrices.json",str,function (err) {
 if (err) throw err;
 console.log('Saved!');
